@@ -1,0 +1,19 @@
+{
+  "name": "news-app",
+  "version": "1.0.0",
+  "description": "Full-stack news app using web-scraping",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matevsh/news-app.git"
+  },
+  "author": "@matevsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matevsh/news-app/issues"
+  },
+  "homepage": "https://github.com/matevsh/news-app#readme"
+}
