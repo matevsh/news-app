@@ -1,52 +1,43 @@
-import { decode } from 'iso-8859-2';
 import { load } from 'cheerio';
 import axios from 'axios';
+import { decode } from 'iso-8859-2';
 
 const clearText = (text) => text.replaceAll('\n', '').trim();
 
-const getArticle = async (url, articles) => {
-  const options = { url, responseType: 'arraybuffer' };
-  const { data } = await axios.request(options);
+const getArticleLinks = async (url) => {
+  const { data } = await axios(url);
+  const $ = load(data);
 
-  const html = decode(data.toString('binary'));
+  const articleLinkElements = $('.entry > a');
+  return [...articleLinkElements.map((i, el) => $(el).attr('href'))];
+};
+
+const getSingleArticle = async (url) => {
+  const options = { url, responseType: 'arraybuffer' };
+  const { data: response } = await axios.request(options);
+
+  const html = decode(response);
   const $ = load(html);
 
-  const title = $('h1').html();
-  articles.push(clearText(title));
+  const title = clearText($('h1').text());
+  const img = $('img').attr('src');
+  const paragraphElements = $('.art_paragraph, .art_sub_title');
+
+  const paragraphs = [...paragraphElements.map((i, el) => $(el).text())];
+
+  return {
+    title, url, img, paragraphs,
+  };
 };
 
-const getExactArticles = async (articles, articleLinks) => {
-  const promiseArray = [];
-  articleLinks.forEach((articleLink) => {
-    promiseArray.push(getArticle(articleLink, articles));
-  });
-  await Promise.all(promiseArray);
-  console.log('data downloaded');
+const getExactArticles = async (articleLinks) => {
+  const articlePromises = articleLinks.map((url) => getSingleArticle(url));
+  return await Promise.all(articlePromises);
 };
 
-const getArticleLink = async (url) => {
-  const { data } = await axios(url);
-
-  const $ = load(data);
-  const articleLinks = [];
-  const articleLinkElements = $('.entry');
-
-  articleLinkElements.each(function () {
-    if ($(this).attr('id')) return;
-
-    const title = $(this).find('a').attr('href');
-    articleLinks.push(title);
-  });
-
-  return articleLinks;
+const initScraper = async (url) => {
+  const articleLinks = await getArticleLinks(url);
+  return await getExactArticles(articleLinks);
 };
 
-const scrapController = async (url) => {
-  const articles = [];
-  const articleLinks = await getArticleLink(url);
-  await getExactArticles(articles, articleLinks);
-  console.log(articles);
-  return articles;
-};
-
-export default scrapController;
+export default initScraper;
