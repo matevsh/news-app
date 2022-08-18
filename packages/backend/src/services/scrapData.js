@@ -20,13 +20,15 @@ const getSingleArticle = async (url) => {
   const $ = load(html);
 
   const title = clearText($('h1').text());
+  const timeString = $('time').attr('datetime');
+  const time = new Date(timeString).getTime();
   const img = $('img').attr('src');
   const paragraphElements = $('.art_paragraph, .art_sub_title');
 
   const paragraphs = [...paragraphElements.map((i, el) => $(el).text())];
 
   return {
-    title, url, img, paragraphs,
+    title, url, timeString, time, img, paragraphs,
   };
 };
 
