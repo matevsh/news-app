@@ -11,10 +11,10 @@ datasource db {
 }
 
 model articles {
-  id BigInt @id @default(autoincrement())
-  ScrapedAt DateTime @default(now())
-  title String @db.VarChar(100)
-  url String
-  img String
+  id         BigInt   @id @default(autoincrement())
+  ScrapedAt  DateTime @default(now())
+  title      String   @db.VarChar(100)
+  url        String
+  img        String
   paragraphs String[]
 }
