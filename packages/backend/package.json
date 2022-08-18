@@ -11,9 +11,13 @@
   "author": "@matevsh",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.2.1",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.1",
     "iso-8859-2": "^3.0.4"
+  },
+  "devDependencies": {
+    "prisma": "^4.2.1"
   }
 }
