@@ -4,7 +4,7 @@ import updateArticlesController from '../controllers/update-articles-controller.
 
 const router = Router();
 
-router.get('/render', renderDataController);
+router.get('/render/:full?', renderDataController);
 router.get('/update', updateArticlesController);
 
 export default router;

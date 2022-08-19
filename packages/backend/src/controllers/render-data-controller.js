@@ -1,8 +1,12 @@
-import articles from '../db/db-init.js';
+import { fastRender, fullRender } from '../services/select-for-render.js';
 
 const renderDataController = async (req, res) => {
-  const data = await articles.findMany();
-  res.json(data);
+  const fullAliases = ['full', 'expand', 'details'];
+
+  const showFull = fullAliases.includes(req.params.full);
+  if (showFull) return res.json(await fullRender());
+
+  res.json(await fastRender());
 };
 
 export default renderDataController;
