@@ -7,4 +7,6 @@ const router = Router();
 router.get('/render/:full?', renderDataController);
 router.get('/update', updateArticlesController);
 
+router.get('*', (req, res) => res.json({ error: 404 }));
+
 export default router;
