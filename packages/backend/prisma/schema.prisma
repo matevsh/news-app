@@ -12,6 +12,7 @@ datasource db {
 
 model articles {
   id         BigInt   @id @default(autoincrement())
+  articleId  Int      @unique
   scrapedAt  DateTime @default(now())
   timeString String
   time       BigInt

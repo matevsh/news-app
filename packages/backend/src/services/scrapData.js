@@ -2,6 +2,8 @@ import { load } from 'cheerio';
 import axios from 'axios';
 import { decode } from 'iso-8859-2';
 
+const getIdFromUrl = (url) => +url.slice(49, 57);
+
 const clearText = (text) => text.replaceAll('\n', '').trim();
 
 const getArticleLinks = async (url) => {
@@ -20,6 +22,7 @@ const getSingleArticle = async (url) => {
   const $ = load(html);
 
   const title = clearText($('h1').text());
+  const articleId = getIdFromUrl(url);
   const timeString = $('time').attr('datetime');
   const time = new Date(timeString).getTime();
   const img = $('img').attr('src');
@@ -28,7 +31,7 @@ const getSingleArticle = async (url) => {
   const paragraphs = [...paragraphElements.map((i, el) => $(el).text())];
 
   return {
-    title, url, timeString, time, img, paragraphs,
+    title, articleId, url, timeString, time, img, paragraphs,
   };
 };
 

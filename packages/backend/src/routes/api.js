@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import mainController from '../controllers/main-controller.js';
+import renderDataController from '../controllers/render-data-controller.js';
+import updateArticlesController from '../controllers/update-articles-controller.js';
 
 const router = Router();
 
-router.get('/', mainController);
+router.get('/render', renderDataController);
+router.get('/update', updateArticlesController);
 
 export default router;
