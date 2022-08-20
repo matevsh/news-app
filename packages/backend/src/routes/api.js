@@ -2,8 +2,16 @@ import { Router } from 'express';
 import renderDataController from '../controllers/render-data-controller.js';
 import updateArticlesController from '../controllers/update-articles-controller.js';
 import articleController from '../controllers/article-controller.js';
+import { loginController, profileController } from '../controllers/login-controller.js';
 
 const router = Router();
+
+router.get('/login', loginController);
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+router.get('/profile', profileController);
 
 router.get('/render/:type?', renderDataController);
 router.get('/update', updateArticlesController);
