@@ -1,14 +1,17 @@
 const loginController = (req, res) => {
-  req.session.user = { login: 'mati', message: 'siema jestem mati' };
-  res.json({ message: 'Pomyślnie zalogowano na użytkownika mati' });
+  res.json({ ...req.body });
+  // if (!login) return res.json({ message: 'Musisz podać login aby się zalogować' });
+  //
+  // req.session.user = { login, description: `siema jestem ${login}` };
+  // res.json({ message: `Pomyślnie zalogowano na użytkownika ${login}` });
 };
 
 const profileController = (req, res) => {
   const { user } = req.session;
 
   if (user) {
-    res.json({
-      xd: `jesteś zalogowany na użytkownika ${user.login}`,
+    return res.json({
+      message: `jesteś zalogowany na użytkownika ${user.login}`,
       ...user,
     });
   }

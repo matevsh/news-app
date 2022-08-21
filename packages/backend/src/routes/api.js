@@ -6,7 +6,7 @@ import { loginController, profileController } from '../controllers/login-control
 
 const router = Router();
 
-router.get('/login', loginController);
+router.post('/login', loginController);
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');

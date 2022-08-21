@@ -1,4 +1,4 @@
-import articles from '../db/db-init.js';
+import { articles } from '../db/db-init.js';
 
 const checkDidExistController = async (data) => {
   const tryFind = await articles.findMany({ select: { articleId: true } });

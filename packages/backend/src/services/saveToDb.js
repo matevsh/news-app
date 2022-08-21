@@ -1,4 +1,4 @@
-import articles from '../db/db-init.js';
+import { articles } from '../db/db-init.js';
 
 const clearUnusedField = (x) => x.map(({ isNew, ...article }) => article);
 

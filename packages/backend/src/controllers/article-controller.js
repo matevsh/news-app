@@ -1,4 +1,4 @@
-import articles from '../db/db-init.js';
+import { articles } from '../db/db-init.js';
 
 const articleController = async (req, res) => {
   const { aid } = req.params;
