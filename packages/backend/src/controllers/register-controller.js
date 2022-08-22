@@ -1,9 +1,7 @@
 import { genSalt, hash } from 'bcrypt';
 import { user } from '../db/db-init.js';
 
-const throwError = (msg) => {
-  throw new Error(msg);
-};
+const throwError = (msg) => { throw new Error(msg); };
 
 const registerController = async (req, res) => {
   const { login, password } = req.body;

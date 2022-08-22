@@ -1,6 +1,6 @@
-import initScraper from '../services/scrapData.js';
+import initScraper from '../services/scrap-data.js';
 import checkDidExistController from './check-did-exist-controller.js';
-import saveToDb from '../services/saveToDb.js';
+import saveToDb from '../services/save-to-db.js';
 
 const URL = 'https://wiadomosci.gazeta.pl/wiadomosci';
 
