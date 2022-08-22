@@ -1,6 +1,6 @@
-import { articles } from '../db/db-init.js';
+import { articles } from '../../db/db-init.js';
 
-const articleController = async (req, res) => {
+const article = async (req, res) => {
   const { aid } = req.params;
   const data = await articles.findUnique({
     where: { articleId: +aid },
@@ -8,4 +8,4 @@ const articleController = async (req, res) => {
   res.json(data);
 };
 
-export default articleController;
+export default article;

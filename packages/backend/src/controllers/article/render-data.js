@@ -1,6 +1,6 @@
-import { fastRender, fullRender } from '../services/select-for-render.js';
+import { fastRender, fullRender } from '../../services/article/select-for-render.js';
 
-const renderDataController = async (req, res) => {
+const renderData = async (req, res) => {
   const renderType = req.params.type?.toLowerCase();
   const fullAliases = ['full', 'expand', 'details'];
 
@@ -10,4 +10,4 @@ const renderDataController = async (req, res) => {
   res.json(await fastRender());
 };
 
-export default renderDataController;
+export default renderData;

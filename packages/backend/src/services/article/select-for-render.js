@@ -1,4 +1,4 @@
-import { articles } from '../db/db-init.js';
+import { articles } from '../../db/db-init.js';
 
 const simplifyObj = (x) => JSON.parse(JSON.stringify(x));
 

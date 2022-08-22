@@ -1,25 +1,24 @@
 import { Router } from 'express';
-import renderDataController from '../controllers/render-data-controller.js';
-import updateArticlesController from '../controllers/update-articles-controller.js';
-import articleController from '../controllers/article-controller.js';
-import { loginController, profileController } from '../controllers/login-controller.js';
-import registerController from '../controllers/register-controller.js';
+import renderData from '../controllers/article/render-data.js';
+import updateArticles from '../controllers/article/update-articles.js';
+import article from '../controllers/article/article.js';
+import { login, profileController } from '../controllers/user/login.js';
+import register from '../controllers/user/register.js';
+import logout from '../controllers/user/logout.js';
+import error404 from '../controllers/errors/404.js';
 
 const router = Router();
 
-router.post('/register', registerController);
-router.post('/login', loginController);
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-});
+router.post('/register', register);
+router.post('/login', login);
+router.get('/logout', logout);
 router.get('/profile', profileController);
 
-router.get('/render/:type?', renderDataController);
-router.get('/update', updateArticlesController);
+router.get('/render/:type?', renderData);
+router.get('/update', updateArticles);
 
-router.get('/article/:aid', articleController);
+router.get('/article/:aid', article);
 
-router.get('*', (req, res) => res.json({ error: 404 }));
+router.get('*', error404);
 
 export default router;

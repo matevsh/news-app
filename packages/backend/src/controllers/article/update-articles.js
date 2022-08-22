@@ -1,14 +1,14 @@
-import initScraper from '../services/scrap-data.js';
-import checkDidExistController from './check-did-exist-controller.js';
-import saveToDb from '../services/save-to-db.js';
+import initScraper from '../../services/article/scrap-data.js';
+import checkDidExist from '../../services/article/check-did-exist.js';
+import saveToDb from '../../services/article/save-to-db.js';
 
 const URL = 'https://wiadomosci.gazeta.pl/wiadomosci';
 
-const updateArticlesController = async (req, res) => {
+const updateArticles = async (req, res) => {
   try {
     const startTime = new Date().getTime();
     const data = await initScraper(URL);
-    const newArticles = await checkDidExistController(data) || [];
+    const newArticles = await checkDidExist(data) || [];
 
     const messages = [
       `Pobrano ${newArticles.length} rekordów 🐠`,
@@ -29,4 +29,4 @@ const updateArticlesController = async (req, res) => {
   }
 };
 
-export default updateArticlesController;
+export default updateArticles;

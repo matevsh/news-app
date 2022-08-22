@@ -1,4 +1,4 @@
-const loginController = (req, res) => {
+const login = (req, res) => {
   res.json({ ...req.body });
   // if (!login) return res.json({ message: 'Musisz podać login aby się zalogować' });
   //
@@ -20,4 +20,4 @@ const profileController = (req, res) => {
   });
 };
 
-export { loginController, profileController };
+export { login, profileController };
