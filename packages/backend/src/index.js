@@ -1,9 +1,11 @@
 import express from 'express';
 import sessions from 'express-session';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import router from './routes/api.js';
 
 const app = express();
+app.use(cors({ origin: '*' }));
 
 const oneDay = 1000 * 60 * 60 * 24;
 
