@@ -1,5 +1,5 @@
 import { genSalt, hash } from 'bcrypt';
-import { user } from '../../db/db-init.js';
+import { user } from '../../shared/db/prisma.js';
 
 const throwError = (msg) => { throw new Error(msg); };
 

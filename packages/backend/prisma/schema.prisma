@@ -11,15 +11,16 @@ datasource db {
 }
 
 model articles {
-  id         BigInt   @id @default(autoincrement())
-  articleId  Int      @unique
-  scrapedAt  DateTime @default(now())
-  timeString String
-  time       BigInt
-  title      String
-  url        String
-  img        String
-  paragraphs String[]
+  id          BigInt   @id @default(autoincrement())
+  articleId   Int      @unique
+  scrapedAt   DateTime @default(now())
+  timeString  String
+  time        BigInt
+  title       String
+  url         String
+  img         String
+  description String
+  paragraphs  String[]
 }
 
 model user {
